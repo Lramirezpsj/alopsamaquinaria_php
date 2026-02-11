@@ -1,0 +1,112 @@
+/* ============================= */
+/* NAVBAR WHATSAPP - SEGURO */
+/* ============================= */
+
+.wa-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #0d6efd;
+    color: white;
+    z-index: 10000;
+}
+
+/* Barra superior */
+.wa-navbar-top {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+}
+
+/* Botón hamburguesa */
+.wa-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Título */
+.wa-title {
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* ============================= */
+/* MENÚ */
+/* ============================= */
+
+.wa-menu {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    background-color: #0d6efd;
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.wa-menu.show {
+    display: flex;
+}
+
+.wa-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 16px;
+    font-size: 17px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* ============================= */
+/* ESPACIO PARA CONTENIDO */
+/* ============================= */
+
+body {
+    padding-top: 56px;
+}
+
+/* ============================= */
+/* DESKTOP */
+/* ============================= */
+
+@media (min-width: 769px) {
+
+    .wa-toggle {
+        display: none;
+    }
+
+    .wa-navbar {
+        height: 60px;
+    }
+
+    .wa-navbar-top {
+        height: 60px;
+    }
+
+    .wa-menu {
+        position: absolute;
+        top: 0;
+        left: auto;
+        right: 20px;
+        height: 60px;
+        display: flex !important;
+        flex-direction: row;
+        background: transparent;
+        gap: 12px;
+        width: auto;
+    }
+
+    .wa-menu a {
+        border: none;
+        padding: 10px 14px;
+        font-size: 15px;
+    }
+}

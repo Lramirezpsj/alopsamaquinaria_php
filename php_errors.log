@@ -1,0 +1,5 @@
+[29-Mar-2025 03:18:21 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /var/www/html/alopsa/listar.php on line 14
+[29-Mar-2025 03:18:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/alopsa/db.php:14) in /var/www/html/alopsa/listar.php on line 18
+[29-Mar-2025 03:24:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/alopsa/db.php:14) in /var/www/html/alopsa/listar.php on line 26
+[29-Mar-2025 03:24:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/alopsa/db.php:14) in /var/www/html/alopsa/listar.php on line 27
+[29-Mar-2025 03:24:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/alopsa/db.php:14) in /var/www/html/alopsa/listar.php on line 28

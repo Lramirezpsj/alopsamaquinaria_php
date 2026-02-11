@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("assets/img/arcoiris.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #dddddd;
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    background-position: center 30%;
+}
+
+/* Estilos para el navbar */
+.navbar {
+    display: flex;
+    /* activa flexbox */
+    justify-content: space-between;
+    /* izquierda / derecha */
+    align-items: center;
+    /* centra vertical */
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Botón logout */
+.btn-logout {
+    display: flex;
+    /* icono + texto alineados */
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para el grid-container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    padding: 40px;
+    max-width: 900px;
+    /* 🔥 limita el ancho */
+    margin: 0 auto;
+    /* centra */
+    margin-top: 100px;
+}
+
+/* Estilos para los elementos del grid */
+.grid-item {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+}
+
+.grid-item {
+    padding: 16px;
+    min-height: 110px;
+}
+
+.grid-item {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.grid-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.grid-item a:hover {
+    color: #007bff;
+    /* Color azul al pasar el mouse */
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        /* 1 columna en pantallas pequeñas */
+    }
+
+    .grid-item a {
+        font-size: 14px;
+    }
+
+    body {
+        height: auto;
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}

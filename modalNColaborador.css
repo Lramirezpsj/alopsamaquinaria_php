@@ -1,0 +1,77 @@
+.modalNColaborador {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.modal-contenido-colaborador {
+    background: #fff;
+    max-width: 600px;
+    width: 95%;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    animation: aparecer .3s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.form-group-colaborador {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group-colaborador input,
+.form-group-colaborador select,
+.form-group-colaborador textarea {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.form-actions-colaborador {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-submit {
+    background: #0d6efd;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+}
+
+.btn-cancel {
+    background: #6c757d;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
