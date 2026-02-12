@@ -120,78 +120,78 @@ $colaboradores = $pdo->query("SELECT id_colaborador, nombre FROM colaboradores")
 
         <h1>Pedidos</h1>
 
+        <!-- Modal para exportar -->
+        <div id="modalExportar" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrar-modal">&times;</span>
+                <h2><i class="fas fa-file-excel"></i> Exportar pedidos</h2>
+                <form action="exportar_alimento.php" method="post">
+                    <div class="form-group">
+                        <label for="fecha_inicio">Fecha de inicio:</label>
+                        <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_fin">Fecha de fin:</label>
+                        <input type="date" id="fecha_fin" name="fecha_fin" required>
+                    </div>
+                    <button type="submit" class="btn-exportar-excel">
+                        <i class="fas fa-download"></i> Generar Reporte
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal para nuevo registro -->
+        <div id="modalPedido" class="modalNPedido">
+            <div class="modal-contenido-pedido">
+                <span class="cerrar-modal">&times;</span>
+                <h2 id="tituloModal">
+                    <i class="fas fa-plus"></i> Nuevo pedido
+                </h2>
+
+                <form action="crear_pedido.php" method="post" id="formPedido">
+                    <input type="hidden" name="id_pedido" id="id_pedido">
+
+                    <div class="form-group-pedido">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+
+                    <div class="form-group-pedido">
+                        <select name="colaborador" id="colaborador" required>
+                            <option value="">Seleccione un colaborador</option>
+                            <?php foreach ($colaboradores as $c): ?>
+                                <option value="<?= $c['id_colaborador'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="alimentos-scroll">
+                        <?php foreach ($alimentos as $alimento): ?>
+                            <div class="alimento-item"
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background-color: #f1f7fd; margin-bottom: 8px; border-radius: 5px;">
+                                <label style="margin: 0;">
+                                    <input type="checkbox" name="alimentos[]" value="<?= $alimento['id_alimento'] ?>">
+                                    <strong><?= htmlspecialchars($alimento['nombre']) ?>
+                                        (Q<?= number_format($alimento['precio'], 2) ?>)</strong>
+                                </label>
+                                <input type="number" name="cantidades[]" min="1" value="1" class="cantidad-input"
+                                    style="width: 80px; padding: 4px;">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <div class="form-actions-pedido">
+                        <button type="submit" class="btn-submit" id="btnSubmit">Guardar</button>
+                        <a href="listar.php" class="btn-cancel" id="btnCancelar">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <?php if (empty($pedidos)): ?>
             <p>No hay pedidos registrados.</p>
         <?php else: ?>
-
-            <!-- Modal para exportar -->
-            <div id="modalExportar" class="modal">
-                <div class="modal-contenido">
-                    <span class="cerrar-modal">&times;</span>
-                    <h2><i class="fas fa-file-excel"></i> Exportar suministros</h2>
-                    <form action="exportar_alimento.php" method="post">
-                        <div class="form-group">
-                            <label for="fecha_inicio">Fecha de inicio:</label>
-                            <input type="date" id="fecha_inicio" name="fecha_inicio" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha_fin">Fecha de fin:</label>
-                            <input type="date" id="fecha_fin" name="fecha_fin" required>
-                        </div>
-                        <button type="submit" class="btn-exportar-excel">
-                            <i class="fas fa-download"></i> Generar Reporte
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Modal para nuevo registro -->
-            <div id="modalPedido" class="modalNPedido">
-                <div class="modal-contenido-pedido">
-                    <span class="cerrar-modal">&times;</span>
-                    <h2 id="tituloModal">
-                        <i class="fas fa-plus"></i> Nuevo pedido
-                    </h2>
-
-                    <form action="crear_pedido.php" method="post" id="formPedido">
-                        <input type="hidden" name="id_pedido" id="id_pedido">
-
-                        <div class="form-group-pedido">
-                            <label for="fecha">Fecha:</label>
-                            <input type="date" id="fecha" name="fecha" required>
-                        </div>
-
-                        <div class="form-group-pedido">
-                            <select name="colaborador" id="colaborador" required>
-                                <option value="">Seleccione un colaborador</option>
-                                <?php foreach ($colaboradores as $c): ?>
-                                    <option value="<?= $c['id_colaborador'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="alimentos-scroll">
-                            <?php foreach ($alimentos as $alimento): ?>
-                                <div class="alimento-item"
-                                    style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background-color: #f1f7fd; margin-bottom: 8px; border-radius: 5px;">
-                                    <label style="margin: 0;">
-                                        <input type="checkbox" name="alimentos[]" value="<?= $alimento['id_alimento'] ?>">
-                                        <strong><?= htmlspecialchars($alimento['nombre']) ?>
-                                            (Q<?= number_format($alimento['precio'], 2) ?>)</strong>
-                                    </label>
-                                    <input type="number" name="cantidades[]" min="1" value="1" class="cantidad-input"
-                                        style="width: 80px; padding: 4px;">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <div class="form-actions-pedido">
-                            <button type="submit" class="btn-submit" id="btnSubmit">Guardar</button>
-                            <a href="listar.php" class="btn-cancel" id="btnCancelar">Cancelar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
             <div class="table-container">
                 <table class="table">
@@ -223,7 +223,7 @@ $colaboradores = $pdo->query("SELECT id_colaborador, nombre FROM colaboradores")
                                             🗑️ Eliminar</a>
                                     <?php endif; ?>
 
-                                    <span class="detalles-toggle" onclick="toggleDetalles(<?= $pedido['id_pedido'] ?>)">▼
+                                    <span class="detalles-toggle" onclick="toggleDetalles(<?= $pedido['id_pedido'] ?>)" style="cursor: pointer;">▼
                                         Detalles</span> |
                                     <a href="ver_pedido.php?id=<?= $pedido['id_pedido'] ?>">Ver</a>
 

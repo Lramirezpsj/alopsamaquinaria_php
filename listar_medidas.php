@@ -76,7 +76,7 @@ try {
     </div>
 
     <div class="container">
-        <h1>medidas</h1>
+        <h1>Medidas</h1>
 
         <!-- modal para nuevo registro-->
         <div id="modalMedida" class="modalNMedida">

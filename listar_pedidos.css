@@ -89,6 +89,18 @@ tr:hover {
     font-weight: bold;
 }
 
+/* Estilo para el toggle de detalles */
+.detalles-toggle {
+    cursor: pointer;
+    color: #0066cc;
+    font-weight: bold;
+    user-select: none;
+}
+
+.detalles-toggle:hover {
+    text-decoration: underline;
+}
+
 /* ================================
    PAGINACIÓN
 ================================ */
