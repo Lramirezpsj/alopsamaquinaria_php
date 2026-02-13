@@ -43,7 +43,7 @@ $stmt->execute([
     $_POST['h_final'] !== '' ? $_POST['h_final'] : null,
     $_POST['turno'],
     mb_strtoupper($_POST['comentarios'] ?? 'UTF-8'),
-    strtoupper($_POST['operador']), //
+    strtoupper($operador), // Usar la variable calculada
     $id
 ]);
 

@@ -16,7 +16,12 @@ $medida = $_POST['medida'] ?? null;
 $movimiento = $_POST['movimiento'] ?? null;
 $colaborador = $_POST['colaborador'] ?? null;
 $comentarios = mb_strtoupper(trim($_POST['comentarios'] ?? ''), 'UTF-8');
-$operador = $_POST['operador'] ?? null;
+/* OPERADOR SEGURO */
+if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'ADMIN' && !empty($_POST['operador'])) {
+    $operador = $_POST['operador'];
+} else {
+    $operador = $_SESSION['usuario'];
+}
 
 /* ===== Validar campos obligatorios ===== */
 

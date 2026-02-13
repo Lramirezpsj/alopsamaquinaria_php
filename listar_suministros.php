@@ -195,9 +195,15 @@ $usuarioLogeado = $_SESSION['usuario'];
                     </div>
 
                     <div class="form-group-suministro">
-                        <label>Operador:</label>
-                        <input type="text" id="operador_visible" readonly>
-                        <input type="hidden" name="operador" id="operador">
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'ADMIN'): ?>
+                            <label>Operador:</label>
+                            <input type="text" id="operador_visible">
+                            <input type="hidden" name="operador" id="operador">
+                        <?php else: ?>
+                            <label>Operador:</label>
+                            <input type="text" id="operador_visible" readonly>
+                            <input type="hidden" name="operador" id="operador" readonly>
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group-suministro">
@@ -369,6 +375,14 @@ $usuarioLogeado = $_SESSION['usuario'];
             const operadorHidden = document.getElementById("operador");
 
             const USUARIO_LOGEADO = "<?= htmlspecialchars($usuarioLogeado) ?>";
+            const ROL_LOGEADO = "<?= htmlspecialchars($_SESSION['rol'] ?? '') ?>";
+
+            /* ========= SINCRONIZAR VISIBLE → HIDDEN (SEGURO) ========= */
+            if (operadorVisible && operadorHidden) {
+                operadorVisible.addEventListener("input", () => {
+                    operadorHidden.value = operadorVisible.value;
+                });
+            }
 
             /* ========= NUEVO ========= */
             function abrirNuevo() {
@@ -377,8 +391,11 @@ $usuarioLogeado = $_SESSION['usuario'];
                 tituloModal.innerText = "Nuevo registro";
                 btnSubmit.innerText = "Guardar";
 
-                operadorVisible.value = USUARIO_LOGEADO;
-                operadorHidden.value = USUARIO_LOGEADO;
+                if (operadorVisible && operadorHidden) {
+                    operadorVisible.value = USUARIO_LOGEADO;
+                    operadorHidden.value = USUARIO_LOGEADO;
+                    operadorVisible.readOnly = (ROL_LOGEADO !== 'ADMIN');
+                }
 
                 // limpiar campo de foto y ocultar link
                 const modalFotoArea = document.getElementById('modalFotoArea');
@@ -407,8 +424,11 @@ $usuarioLogeado = $_SESSION['usuario'];
                 document.getElementById("total").value = data.total;
                 document.getElementById("comentarios").value = data.comentarios;
 
-                operadorVisible.value = USUARIO_LOGEADO;
-                operadorHidden.value = USUARIO_LOGEADO;
+                if (operadorVisible && operadorHidden) {
+                    operadorVisible.value = data.operador;
+                    operadorHidden.value = data.operador;
+                    operadorVisible.readOnly = (ROL_LOGEADO !== 'ADMIN');
+                }
 
                 // mostrar link a foto existente si hay
                 const modalFotoArea = document.getElementById('modalFotoArea');

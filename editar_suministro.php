@@ -127,6 +127,13 @@ if ($fotoFilename !== null) {
 }
 $sql .= " WHERE id_suministro = :id";
 
+/* 3. OPERADOR SEGURO */
+if ($_SESSION['rol'] === 'ADMIN' && !empty($_POST['operador'])) {
+    $operador = $_POST['operador'];
+} else {
+    $operador = $_SESSION['usuario'];
+}
+
 $params = [
     ':fecha' => $_POST['fecha'],
     ':maquina' => $_POST['maquina'],
@@ -135,7 +142,7 @@ $params = [
     ':f_bomba' => numOrZero($_POST['f_bomba'] ?? null),
     ':total' => $_POST['total'],
     ':comentarios' => mb_strtoupper($_POST['comentarios'], 'UTF-8'),
-    ':operador' => $_POST['operador'],
+    ':operador' => strtoupper($operador),
     ':id' => $id
 ];
 if ($fotoFilename !== null) $params[':foto'] = $fotoFilename;

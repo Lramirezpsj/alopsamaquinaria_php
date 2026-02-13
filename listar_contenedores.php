@@ -304,13 +304,13 @@ $colaboradores = obtenerOpciones($pdo, 'colaboradores', 'id_colaborador', 'nombr
                         <tr>
                             <th class="text-nowrap">ID</th>
                             <th class="text-nowrap">Acciones</th>
-                            <th class="text-nowrap">Usuario</th>
+                            <th class="text-nowrap">Operador</th>
                             <th class="text-nowrap">Fecha</th>
                             <th class="text-nowrap">Máquina</th>
                             <th class="text-nowrap">Contenedor</th>
                             <th class="text-nowrap">Medida</th>
                             <th class="text-nowrap">Movimiento</th>
-                            <th class="text-nowrap">Operador</th>
+                            <th class="text-nowrap">Colaborador</th>
                             <th class="text-nowrap">Comentarios</th>
                         </tr>
 
