@@ -59,11 +59,6 @@ tr:hover {
 }
 
 /* Acciones de tabla */
-.actions-cell {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-}
 
 .actions-cell a {
     cursor: pointer;

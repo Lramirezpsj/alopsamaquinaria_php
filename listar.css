@@ -61,12 +61,6 @@ tr:hover {
 }
 
 /* ================================ ACCIONES EN TABLA ================================ */
-.actions-cell {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    /* 👈 ESTA ES LA CLAVE */
-}
 
 .actions-cell a {
     cursor: pointer;

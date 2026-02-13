@@ -67,10 +67,6 @@ tr:hover {
 /* ================================
    ACCIONES EN TABLA
 ================================ */
-.actions-cell {
-    display: flex;
-    gap: 10px;
-}
 
 .actions-cell a {
     cursor: pointer;
