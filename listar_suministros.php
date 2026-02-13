@@ -190,6 +190,22 @@ $usuarioLogeado = $_SESSION['usuario'];
                     </div>
 
                     <div class="form-group-suministro">
+                        <label>Foto (opcional):</label>
+                        <div class="photo-input-container" style="display: flex; align-items: center; gap: 10px;">
+                            <button type="button" id="btnShowPhotoMenu" class="btn-submit" style="background: #6c757d; margin: 0;">
+                                <i class="fas fa-camera"></i> Seleccionar Foto
+                            </button>
+                            <span id="photoStatus" style="font-size: 0.9rem; color: #666;">No se ha seleccionado archivo</span>
+                        </div>
+                        <input type="file" name="foto" id="modal_foto" accept="image/*" style="display: none;">
+                        
+                        <div id="modalFotoArea" style="margin-top:6px; display:none;">
+                            <a href="#" id="modalFotoLink" target="_blank">Ver foto actual</a>
+                            <button type="button" id="modalFotoDelete" style="margin-left:8px;" class="btn-delete-photo">Eliminar foto</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group-suministro">
                         <label>Comentarios:</label>
                         <textarea id="comentarios" name="comentarios"></textarea>
                     </div>
@@ -206,23 +222,7 @@ $usuarioLogeado = $_SESSION['usuario'];
                         <?php endif; ?>
                     </div>
 
-                    <div class="form-group-suministro">
-                        <label>Foto (opcional):</label>
-                        <div class="photo-input-container" style="display: flex; align-items: center; gap: 10px;">
-                            <button type="button" id="btnShowPhotoMenu" class="btn-submit" style="background: #6c757d; margin: 0;">
-                                <i class="fas fa-camera"></i> Seleccionar Foto
-                            </button>
-                            <span id="photoStatus" style="font-size: 0.9rem; color: #666;">No se ha seleccionado archivo</span>
-                        </div>
-                        <input type="file" name="foto" id="modal_foto" accept="image/*" style="display: none;">
-                        
-                        <div id="modalFotoArea" style="margin-top:6px; display:none;">
-                            <a href="#" id="modalFotoLink" target="_blank">Ver foto actual</a>
-                            <button type="button" id="modalFotoDelete" style="margin-left:8px;" class="btn-delete-photo">Eliminar foto</button>
-                        </div>
-                    </div>
-
-                    <div class="form-actions-horometro">
+                    <div class="form-actions-suministro">
                         <button type="submit" class="btn-submit" id="btnSubmit">Guardar</button>
                         <a href="listar.php" class="btn-cancel" id="btnCancelar">Cancelar</a>
                     </div>
