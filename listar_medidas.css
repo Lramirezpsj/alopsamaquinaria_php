@@ -118,7 +118,7 @@ tr:hover {
 }
 
 /* Para pantalla movil */
-@media(max-width: 480px) {
+@media (max-width: 1024px) {
     .container {
         padding: 10px;
     }

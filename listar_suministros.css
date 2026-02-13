@@ -144,10 +144,136 @@ tr:hover {
     box-shadow: 0 6px 14px rgba(0, 0, 0, .35);
 }
 
+/* Asegurar que la imagen dentro del modal se centra y no expande la caja */
+.modal-contenido img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Imagen modal específico */
+.modal.modal-image .modal-contenido {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .modal-contenido #imgSpinner {
+    font-weight: bold;
+    color: #333;
+}
+
+/* ================================
+   FOTO (miniatura + upload)
+================================ */
+.foto-cell {
+    width: 120px;
+    vertical-align: middle;
+}
+
+.thumb-img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.foto-link {
+    display: inline-block;
+    color: #0d6efd;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.thumb-placeholder {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #6c757d;
+    border-radius: 6px;
+    border: 1px dashed #ddd;
+    margin-bottom: 6px;
+}
+
+.upload-form {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.btn-choose,
+.btn-upload {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+}
+
+.btn-upload {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+/* Previsualización en modal para imagen (forzar centrado y superposición) */
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 20000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+#imageModal .modal-contenido {
+    position: relative !important;
+    max-width: 90% !important;
+    max-height: 90% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#imageModal img {
+    max-width: 100% !important;
+    max-height: 80vh !important;
+    border-radius: 6px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+#downloadImage {
+    position: fixed !important;
+    right: 24px !important;
+    top: 24px !important;
+    z-index: 20001 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 8px 10px !important;
+    border-radius: 6px !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    display: none !important;
+}
+
 /* ================================
    MÓVIL REAL
 ================================ */
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
 
     .container {
         padding: 10px;

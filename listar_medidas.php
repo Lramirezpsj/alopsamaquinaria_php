@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 
 // Limpieza de buffers
 /*while (ob_get_level() > 0) {
@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
 $usuarioLogeado = $_SESSION['usuario'];
 
 // incluir db.php
-require __DIR__ . '/db.php';
+require 'db.php';
 
 // obtener opciones para combos
 /*function obtenerOpciones($pdo, $tabla, $id, $nombre): mixed
@@ -52,12 +52,24 @@ try {
 <html lang="es">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar_medidas.css">
-    <link rel="stylesheet" href="modalNMedida.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="listar_medidas.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNMedida.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modalNMedida');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
     <title>medidas</title>
 </head>
 
@@ -79,7 +91,7 @@ try {
         <h1>Medidas</h1>
 
         <!-- modal para nuevo registro-->
-        <div id="modalMedida" class="modalNMedida">
+        <div id="modalMedida" class="modalNMedida" style="display: none;">
             <div class="modal-contenido-medida">
                 <span class="cerrar-modal"></span>
 

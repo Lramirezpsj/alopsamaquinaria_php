@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 /* ================== SESIÓN ================== */
 session_start();
 
@@ -118,14 +118,26 @@ $colaboradores = obtenerOpciones($pdo, 'colaboradores', 'id_colaborador', 'nombr
 <html lang="es">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Contenedores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar_contenedores.css">
-    <link rel="stylesheet" href="modal.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="modalNContenedor.css">
+    <link rel="stylesheet" href="listar_contenedores.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modal.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNContenedor.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modal, .modalNContenedor');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
     <style>
 
     </style>
@@ -165,7 +177,7 @@ $colaboradores = obtenerOpciones($pdo, 'colaboradores', 'id_colaborador', 'nombr
         </div>
 
         <!-- Modal para exportar -->
-        <div id="modalExportar" class="modal">
+        <div id="modalExportar" class="modal" style="display: none;">
             <div class="modal-contenido">
                 <span class="cerrar-modal">&times;</span>
                 <h2><i class="fas fa-file-excel"></i> Exportar Contenedores</h2>
@@ -186,7 +198,7 @@ $colaboradores = obtenerOpciones($pdo, 'colaboradores', 'id_colaborador', 'nombr
         </div>
 
         <!-- MODAL CONTENEDOR -->
-        <div id="modalContenedor" class="modalNContenedor">
+        <div id="modalContenedor" class="modalNContenedor" style="display: none;">
             <div class="modal-contenido-contenedor">
                 <span class="cerrar-modal">&times;</span>
 

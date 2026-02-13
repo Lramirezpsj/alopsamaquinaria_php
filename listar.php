@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 // 1. Limpieza radical de buffers
 while (ob_get_level() > 0) {
     ob_end_clean();
@@ -108,15 +108,27 @@ $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 <html lang="es">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Hodómetros</title>
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar.css">
-    <link rel="stylesheet" href="modal.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="modalNHorometro.css">
+    <link rel="stylesheet" href="listar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modal.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNHorometro.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modal, .modalNHorometro');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
     <style>
     </style>
 </head>
@@ -148,7 +160,7 @@ $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
 
         <!-- Modal para exportar -->
-        <div id="modalExportar" class="modal">
+        <div id="modalExportar" class="modal" style="display: none;">
             <div class="modal-contenido">
                 <span class="cerrar-modal">&times;</span>
                 <h2><i class="fas fa-file-excel"></i> Exportar Hormetros</h2>
@@ -169,7 +181,7 @@ $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
         </div>
 
         <!-- Modal para nuevo registro -->
-        <div id="modalHorometro" class="modalNHorometro">
+        <div id="modalHorometro" class="modalNHorometro" style="display: none;">
             <div class="modal-contenido-horometro">
                 <span class="cerrar-modal">&times;</span>
                 <h2 id="tituloModal">
@@ -520,7 +532,7 @@ $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
         });
     </script>
 
-    <div id="modalTurno" class="modalNHorometro" style="display:none;">
+    <div id="modalTurno" class="modalNHorometro" style="display: none;">
         <div class="modal-contenido-horometro">
             <span class="cerrar-modal" id="cerrarTurno">&times;</span>
             <h3>Agregar turno</h3>

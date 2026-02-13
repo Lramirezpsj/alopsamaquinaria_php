@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 // 2. Iniciar sesión PRIMERO
 session_start();
 
@@ -7,7 +7,6 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-
 require 'db.php';
 $colaboradores = $pdo->query("SELECT * FROM colaboradores")->fetchAll();
 
@@ -20,13 +19,25 @@ header('X-Content-Type-Options: nosniff');
 <html lang="es">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Colaboradores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar_colaboradores.css">
-    <link rel="stylesheet" href="modal.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="modalNColaborador.css">
+    <link rel="stylesheet" href="listar_colaboradores.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modal.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNColaborador.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modal, .modalNColaborador');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
     <style>
     </style>
 </head>
@@ -46,7 +57,7 @@ header('X-Content-Type-Options: nosniff');
         <h1>Colaboradores</h1>
 
         <!-- Modal para nuevo registro -->
-        <div id="modalColaborador" class="modalNColaborador">
+        <div id="modalColaborador" class="modalNColaborador" style="display: none;">
             <div class="modal-contenido-colaborador">
                 <span class="cerrar-modal">&times;</span>
                 <h2 id="tituloModal">

@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 require 'db.php';
 session_start();
 
@@ -46,14 +46,26 @@ $usuarioLogeado = $_SESSION['usuario'];
 <html lang="es">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Alimentos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar_suministros.css">
-    <link rel="stylesheet" href="modal.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="modalNSuministro.css">
+    <link rel="stylesheet" href="listar_suministros.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modal.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNSuministro.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modal, .modalNSuministro');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
 
 </head>
 
@@ -77,7 +89,7 @@ $usuarioLogeado = $_SESSION['usuario'];
         <h1>Alimentos</h1>
 
         <!-- Modal para exportar -->
-        <div id="modalExportar" class="modal">
+        <div id="modalExportar" class="modal" style="display: none;">
             <div class="modal-contenido">
                 <span class="cerrar-modal">&times;</span>
                 <h2><i class="fas fa-file-excel"></i> Exportar alimentos</h2>
@@ -98,7 +110,7 @@ $usuarioLogeado = $_SESSION['usuario'];
         </div>
 
         <!-- Modal para nuevo/editar registro -->
-        <div id="modalAlimento" class="modalNSuministro">
+        <div id="modalAlimento" class="modalNSuministro" style="display: none;">
             <div class="modal-contenido-suministro">
                 <span class="cerrar-modal">&times;</span>
                 <h2 id="tituloModal">

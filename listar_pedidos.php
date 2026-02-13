@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 // 1. Limpieza radical de buffers
 while (ob_get_level() > 0) {
     ob_end_clean();
@@ -12,7 +12,6 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-
 require 'db.php';
 
 // Configuración de paginación
@@ -90,13 +89,26 @@ $colaboradores = $pdo->query("SELECT id_colaborador, nombre FROM colaboradores")
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta charset="UTF-8">
     <title>Listado Completo de Pedidos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="listar_pedidos.css">
-    <link rel="stylesheet" href="modal.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="modalNPedido.css">
+    <link rel="stylesheet" href="listar_pedidos.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modal.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="modalNPedido.css?v=<?= time() ?>">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modals = document.querySelectorAll('.modal, .modalNPedido');
+            modals.forEach(m => { if(m) m.style.display = 'none'; });
+        });
+    </script>
     <style>
     </style>
 </head>
@@ -121,7 +133,7 @@ $colaboradores = $pdo->query("SELECT id_colaborador, nombre FROM colaboradores")
         <h1>Pedidos</h1>
 
         <!-- Modal para exportar -->
-        <div id="modalExportar" class="modal">
+        <div id="modalExportar" class="modal" style="display: none;">
             <div class="modal-contenido">
                 <span class="cerrar-modal">&times;</span>
                 <h2><i class="fas fa-file-excel"></i> Exportar pedidos</h2>
@@ -142,7 +154,7 @@ $colaboradores = $pdo->query("SELECT id_colaborador, nombre FROM colaboradores")
         </div>
 
         <!-- Modal para nuevo registro -->
-        <div id="modalPedido" class="modalNPedido">
+        <div id="modalPedido" class="modalNPedido" style="display: none;">
             <div class="modal-contenido-pedido">
                 <span class="cerrar-modal">&times;</span>
                 <h2 id="tituloModal">
